@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsString, MinLength } from "class-validator";
+import { EmailUnico } from "../validacao/email-unico.validator";
  
  
 export class criaUsuarioDTO{
@@ -6,6 +7,7 @@ export class criaUsuarioDTO{
     @IsNotEmpty({message:"Nome não pode ser vazio"})
     nome: string;
 
+    @EmailUnico({message:"Email repetido"})
     @IsEmail(undefined,{message:"Email inválido"})
     email: string;
 
