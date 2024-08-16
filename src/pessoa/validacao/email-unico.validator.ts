@@ -1,5 +1,5 @@
 import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
-import { UsuariosArmazenados } from "../usuario.dm";
+import { UsuariosArmazenados } from "../pessoa.dm";
 import {Injectable} from "@nestjs/common"
 
 @Injectable()

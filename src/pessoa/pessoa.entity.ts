@@ -1,4 +1,4 @@
-export class UsuarioEntity{
+export class PessoaEntity{
     id: string;
     nome: string;
     idade: number;

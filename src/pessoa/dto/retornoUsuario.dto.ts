@@ -1,4 +1,4 @@
-import { UsuarioEntity } from "../usuario.entity";
+import { UsuarioEntity } from "../pessoa.entity";
 
 export class RetornoUsuarioDTO{
     constructor(

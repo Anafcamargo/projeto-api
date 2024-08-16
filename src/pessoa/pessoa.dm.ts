@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import { UsuarioEntity } from "./usuario.entity";
+import { PessoaEntity } from "./pessoa.entity";
 
 @Injectable()
-export class UsuariosArmazenados{
-    #usuarios: UsuarioEntity[] = [];  
+export class PessoasArmazenados{
+    #usuarios: PessoaEntity[] = [];  
 
-    AdicionarUsuario(usuario: UsuarioEntity){
+    AdicionarUsuario(usuario: PessoaEntity){
         this.#usuarios.push(usuario);
     }
 
