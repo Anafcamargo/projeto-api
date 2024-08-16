@@ -3,23 +3,23 @@ import { PessoaEntity } from "./pessoa.entity";
 
 @Injectable()
 export class PessoasArmazenados{
-    #usuarios: PessoaEntity[] = [];  
+    #pessoas: PessoaEntity[] = [];  
 
-    AdicionarUsuario(usuario: PessoaEntity){
-        this.#usuarios.push(usuario);
+    AdicionarPessoa(pessoa: PessoaEntity){
+        this.#pessoas.push(pessoa);
     }
 
     validaEmail(emailNovo: string){
-        const possivelUsuario = this.#usuarios.find(
-            usuario => usuario.email == emailNovo
+        const possivelPessoa = this.#pessoas.find(
+            pessoa => pessoa.email == emailNovo
         )
         
-        return (possivelUsuario === undefined)
+        return (possivelPessoa === undefined)
     }
 
  
 
-    get Usuarios(){        
-        return this.#usuarios;
+    get Pessoas(){        
+        return this.#pessoas;
     }
 }

@@ -1,28 +1,28 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
-import { criaUsuarioDTO } from "./dto/pessoa.dto";
+import { criaPessoaDTO } from "./dto/pessoa.dto";
 import {PessoaEntity } from "./pessoa.entity";
 import {v4  as uuid} from 'uuid'
 import { PessoasArmazenados } from "./pessoa.dm";
-import { RetornoPessoaDTO } from "./dto/retornoUsuario.dto";
+import { RetornoPessoaDTO } from "./dto/retornoPessoa.dto";
 
-@Controller('/usuarios')
+@Controller('/pessoas')
 export class PessoaController{
     
-    constructor(private Usuarios : PessoasArmazenados){
+    constructor(private Pessoas : PessoasArmazenados){
 
     }
 
     @Post()
-    async criaUsuario(@Body() dadosUsuario: criaPessoaDTO){        
-        var emailValido =this.Usuarios.validaEmail( dadosUsuario.email);
-        var novoUsuario = new PessoaEntity(uuid(), dadosUsuario.nome, dadosUsuario.idade, 
-                                            dadosUsuario.cidade, dadosUsuario.email,
-                                            dadosUsuario.telefone, dadosUsuario.senha
+    async criaPessoa(@Body() dadosPessoa: criaPessoaDTO){        
+        var emailValido =this.Pessoas.validaEmail( dadosPessoa.email);
+        var novoPessoa = new PessoaEntity(uuid(), dadosPessoa.nome, dadosPessoa.idade, 
+                                            dadosPessoa.cidade, dadosPessoa.email,
+                                            dadosPessoa.telefone, dadosPessoa.senha
         )
         
         if (emailValido){
-            this.Usuarios.AdicionarUsuario(novoUsuario);
-            var retorno = new RetornoPessoaDTO('Usuario criado',novoUsuario);
+            this.Pessoas.AdicionarPessoa(novoPessoa);
+            var retorno = new RetornoPessoaDTO('Usuario criado',novoPessoa);
             
            
         }else{  
@@ -35,9 +35,9 @@ export class PessoaController{
     }
 
     @Get()
-    async retornaUsuario(){
+    async retornaPessoa(){
         return {
-                Usuarios: this.Usuarios.Usuarios
+                Pessoas: this.Pessoas.Pessoas
             };
     }
 }

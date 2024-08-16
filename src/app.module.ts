@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { UsuarioModule } from './usuario/usuario.module';
+
+import { PessoaModule } from './pessoa/pessoa.module';
 
 
 
 @Module({
-  imports: [UsuarioModule],
+  imports: [PessoaModule],
   controllers: [],
   providers: [],
 })
