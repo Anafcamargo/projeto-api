@@ -1,20 +1,16 @@
+/* eslint-disable prettier/prettier */
 export class PessoaEntity{
     id: string;
     nome: string;
-    idade: number;
-    cidade: string;
-    email: string;
-    telefone: string;
-    senha: string;
-    constructor (id: string, nome: string, idade: number, cidade: string, email: string, telefone: string, senha: string ){
+    nascimento: number;
+    pais: string;
+    value:number;
+   
+    constructor (id: string, nome: string, nascimento: number, pais: string, ){
 
         this.id = id;
         this.nome = nome;
-        this.idade = idade;
-        this.cidade = cidade;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
-
+        this.nascimento = nascimento;
+        this.pais = pais;
     }
 }

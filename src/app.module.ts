@@ -1,7 +1,6 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
-
 import { PessoaModule } from './pessoa/pessoa.module';
-
 
 
 @Module({
@@ -9,4 +8,5 @@ import { PessoaModule } from './pessoa/pessoa.module';
   controllers: [],
   providers: [],
 })
+
 export class AppModule {}
