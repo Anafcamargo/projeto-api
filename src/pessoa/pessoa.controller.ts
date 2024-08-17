@@ -24,7 +24,7 @@ export class PessoaController{
 
     @Post()
     async criaPessoa(@Body() dadosPessoa: criaPessoaDTO){        
-        // var emailValido =this.Pessoas.validaEmail( dadosPessoa.email);
+       
         var novoPessoa = new PessoaEntity(uuid(), dadosPessoa.nome, dadosPessoa.nascimento, 
                                             dadosPessoa.pais
         )
@@ -38,11 +38,10 @@ export class PessoaController{
     }
 
  
-    @Post('/login')//linha que define o método post para login, nesse caso é idenficado o URL
+    @Post('/login')
     async fazerLogin(@Body() dadosLogin: loginPessoaDTO){
-        //chamada da função de login
+        
         var retornoLogin = this.Pessoas.Login(dadosLogin.nome,dadosLogin.nascimento)
-        //criação de retorno, onde caso a resposta seja true é retornado login efetuado, caso seja false, retorna email ou senha invalidos, também é retornado o usuário logado
         var retorno = new RetornoPessoaDTO(retornoLogin.status?'Login efetuado':'Dados invalidos',retornoLogin.pessoa);        
         return retorno;       
         
@@ -71,7 +70,7 @@ export class PessoaController{
     @Get('/:nascimento')
     async retornaPessoas(@Param('nascimento') nascimento:number){
       
-        var pessoasListados = this.Pessoas.pesquisaNascimento(nascimento)
+        var pessoasListados = this.Pessoas.pesquisaNascimento(nascimento = (1990))
         
         
         const ListaRetorno = new ListaPessoaDTO(pessoasListados.id,

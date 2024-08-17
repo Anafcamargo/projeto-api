@@ -16,10 +16,9 @@ export class PessoasArmazenados{
 
 
     async removePessoa(id:string){
-        //pesquisa usuário pelo id passado para retornar ele 
+       
         const pessoa = this.pesquisaId(id);
 
-        //filtra removendo o usário informado
         this.#pessoas = this.#pessoas.filter(
             pessoaSalvo => pessoaSalvo.id !== id
         )
@@ -72,12 +71,12 @@ export class PessoasArmazenados{
     }
 
     Login(pais:string, nascimento:number){
-        //primeiro é pesquisado o usuário por meio do email
+        
         const possivelPessoa = this.pesquisaNascimento(nascimento)
-        //caso encontre o usuário é validada então a senha, caso contrário ja retorna erro de login
+       
         if (possivelPessoa){
             return {
-                //aqui é validada a senha, caso a senha esteja correta, é retornado os dados do usuário e também o status (true para correto, false para incorreto)
+               
                 usuario: possivelPessoa.nascimento == nascimento?possivelPessoa:null,
                 status: possivelPessoa.nascimento== nascimento
             };
