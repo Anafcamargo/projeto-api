@@ -4,6 +4,9 @@ import { FILME } from "./filme.entity";
 import { GeneroService } from "src/genero/genero.service";
 import { RetornoCadastroDTO, RetornoObjDTO } from "src/dto/retorno.dto";
 import {v4 as uuid} from "uuid";
+import { listaFilmeDTO } from "./dto/listaFilme.dto";
+import { CriaFilmeDTO } from "./dto/criaFilme.dto";
+import { AlteraFilmeDTO } from "./dto/alteraFilme.dto";
 
 
 @Injectable()
@@ -14,14 +17,15 @@ export class FilmeService{
         private readonly generoService: GeneroService,
     ) {}
 
-    async listar(): Promise<ListaFilmesDTO[]> {
+    async listar(): Promise<listaFilmeDTO[]> {
         var filmesListados = await this.filmeRepository.find();
         return filmesListados.map(
-            filme => new ListaFilmesDTO(
+            filme => new listaFilmeDTO(
                 filme.ID,
                 filme.NOME,
                 filme.DURACAO,
-                filme.SINOPSE
+                filme.SINOPSE,
+                filme.ANO 
             ))
     }
 
@@ -44,7 +48,7 @@ export class FilmeService{
     //         }
     // }
 
-    async inserir(dados: criaFilmeDTO): Promise<RetornoCadastroDTO>{
+    async inserir(dados: CriaFilmeDTO): Promise<RetornoCadastroDTO>{
         let filme = new FILME();
         filme.ID = uuid();
         filme.NOME = dados.NOME;
@@ -96,7 +100,7 @@ export class FilmeService{
         });
     }
 
-    async alterar (id: string, dados: alteraFilmeDTO) : Promise <RetornoCadastroDTO>{
+    async alterar (id: string, dados: AlteraFilmeDTO) : Promise <RetornoCadastroDTO>{
         const filme = await this.localizarID(id);
 
         Object.entries(dados).forEach(
@@ -105,8 +109,8 @@ export class FilmeService{
                     return;
                 }
                 
-                if (chave === "GENERO"){
-                    filme["GENERO"] = await this.generoService.localizarID(valor);
+                if (chave === "FILME"){
+                    filme["FILME"] = await this.generoService.localizarID(valor);
                     return;
                 }
 

@@ -1,25 +1,21 @@
-import { Optional } from "@nestjs/common";
 import { IsNotEmpty, IsString } from "class-validator";
 
 
-export class AlteraFilmeDTO {
+export class CriaFilmeDTO {
     @IsString()
-    @Optional()
     @IsNotEmpty ({message: "Nome não pode ser vazio"})
     NOME: string;
 
     @IsString()
-    @Optional()
     @IsNotEmpty({message: " Duração não pode ser vazio"})
-    DURACAO: Number;
+    DURACAO: number;
 
     @IsString()
-    @Optional()
     @IsNotEmpty ({message: "Sinopse não pode ser vazio"})
     SINOPSE: string;
 
     @IsString()
-    @Optional()
     @IsNotEmpty ({message: "Ano não pode ser vazio"})
     ANO: string;
-}
+    GENERO: string;
+} 

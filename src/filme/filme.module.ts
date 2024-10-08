@@ -5,6 +5,7 @@ import { generoProviders } from "src/genero/genero.providers";
 import { GeneroModule } from "src/genero/genero.module";
 import { GeneroService } from "src/genero/genero.service";
 import { FilmeService } from "./filme.service";
+import { FilmeController } from "./filme.controller";
 
 @Module({
     imports: [DatabaseModule],

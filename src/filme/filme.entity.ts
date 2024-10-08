@@ -6,7 +6,7 @@ export class FILME{
     @PrimaryColumn()
     ID: string;
 
-    @Column({length: 255})
+    @Column({length: 255}) 
     NOME: string;
 
     @Column("int")
