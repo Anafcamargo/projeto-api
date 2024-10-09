@@ -1,16 +1,15 @@
-/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { DatabaseModule } from '../database/database.module';
 import { PessoaController } from './pessoa.controller';
-import { PessoasArmazenados } from './pessoa.dm';
-
-
-
+import { pessoaProviders } from './pessoa.providers';
+import { PessoaService } from './pessoa.service';
 
 @Module({
-  
+  imports: [DatabaseModule],
   controllers: [PessoaController],
-  providers:[PessoasArmazenados],
-  
+  providers: [
+    ...pessoaProviders,
+    PessoaService,
+  ],
 })
-
 export class PessoaModule {}

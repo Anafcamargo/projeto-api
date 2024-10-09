@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 import { FILME } from "./filme.entity";
 import { GeneroService } from "src/genero/genero.service";
 import { RetornoCadastroDTO, RetornoObjDTO } from "src/dto/retorno.dto";
@@ -7,6 +7,7 @@ import {v4 as uuid} from "uuid";
 import { listaFilmeDTO } from "./dto/listaFilme.dto";
 import { CriaFilmeDTO } from "./dto/criaFilme.dto";
 import { AlteraFilmeDTO } from "./dto/alteraFilme.dto";
+import { GENERO } from "src/genero/genero.entity";
 
 
 @Injectable()
@@ -14,6 +15,8 @@ export class FilmeService{
     constructor(
         @Inject("FILME_REPOSITORY")
         private filmeRepository: Repository<FILME>,
+        @Inject("GENERO_REPOSITORY")
+        private generoRepository:Repository<GENERO>,
         private readonly generoService: GeneroService,
     ) {}
 
@@ -29,24 +32,23 @@ export class FilmeService{
             ))
     }
 
-    // async Compartilhar(id:string){
-    //     var filme = await (this.filmeRepository
-    //         .createQueryBuilder("filme")
-    //         .select("filme.ID", "ID")
-    //         .addSelect("filme.NOME", "NOME_FILME")
-    //         .addSelect("filme.SINPSE", "SINOPSE")
-    //         .addSelect("filme.ANO", "ANO")
-    //         .addSelect("filme.DURACAO", "DURACAO")
-    //         .addSelect("gen.NOME", "GENERO")
-    //         .leftJoin(  "genero", "gen", "filme.idgenero = gen.id")
-    //         .andWhere( "filme.ID = :ID", {ID: ${id}})
-    //         .getRawOne()
-    //         );
+    async Compartilhar(id:string){
+        var filme = await (this.filmeRepository
+            .createQueryBuilder("filme")
+            .select("filme.ID", "ID")
+            .addSelect("filme.NOME", "NOME_FILME")
+            .addSelect("filme.SINOPSE", "SINOPSE")
+            .addSelect("filme.ANO", "ANO")
+            .addSelect("filme.DURACAO", "DURACAO")
+            .addSelect("gen.NOME", "GENERO")
+            .leftJoin(  "genero", "gen", "filme.idgenero = gen.id")
+            .andWhere( "filme.ID = :ID", {ID: '${id}'})
+            .getRawOne());
 
-    //         return{
-    //             message: "Estou assistindo o filme ${filme.NOME_FILME} que é do genero ${filme.GENERO} que conta"
-    //         }
-    // }
+            return{
+                message:  `Estou assistindo o filme ${filme.NOME_FILME} que é do genero ${filme.GENERO} que conta a seguinte história: ${filme.SINOPSE} foi lançado em ${filme.ANO} e tem duração de ${filme.DURACAO} minutos. Assista também!!`
+            }
+    }
 
     async inserir(dados: CriaFilmeDTO): Promise<RetornoCadastroDTO>{
         let filme = new FILME();
@@ -109,8 +111,8 @@ export class FilmeService{
                     return;
                 }
                 
-                if (chave === "FILME"){
-                    filme["FILME"] = await this.generoService.localizarID(valor);
+                if (chave === "GENERO"){
+                    filme["GENERO"] = await this.generoService.localizarID(valor);
                     return;
                 }
 

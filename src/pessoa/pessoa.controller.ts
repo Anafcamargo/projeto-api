@@ -1,108 +1,39 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-var */
-/* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { criaPessoaDTO } from "./dto/pessoa.dto";
-import {PessoaEntity } from "./pessoa.entity";
-import {v4  as uuid} from 'uuid'
-import { PessoasArmazenados } from "./pessoa.dm";
-import { RetornoPessoaDTO } from "./dto/retornoPessoa.dto";
-import { alteraPessoaDTO } from "./dto/alterapessoa.dto";
-import { ListaPessoaDTO } from "./dto/listapessoa.dto";
-import { loginPessoaDTO } from "./dto/loginpessoa.dto";
-import { response } from "express";
-import { url } from "inspector";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common"
+import { RetornoCadastroDTO, RetornoObjDTO } from "src/dto/retorno.dto";
+import { PessoaService } from "./pessoa.service";
+import { PESSOA } from "./pessoa.entity";
+import { CriaPessoaDTO } from "./dto/criaPessoa.dto";
+import { AlteraPessoaDTO } from "./dto/alterapessoa.dto";
 
-@Controller('/pessoas')
+@Controller('/pessoa')
 export class PessoaController{
+    constructor(private readonly pessoaService: PessoaService){
+             
+    }
+
+    @Get('')
+    async listar(): Promise<PESSOA[]>{
+        return this.pessoaService.listar();
+    }
+
+    @Post('')
+    async criaPessoa(@Body() dados: CriaPessoaDTO): Promise<RetornoCadastroDTO>{        
+        return this.pessoaService.inserir(dados)        
+    }
+
+    @Put(':id')
+    async alterarPessoa(@Body() dados: AlteraPessoaDTO,@Param('id') id: string): Promise<RetornoCadastroDTO>{        
+        return this.pessoaService.alterar(id,dados)        
+    }
     
-    constructor(private Pessoas : PessoasArmazenados){
-
+    @Get('ID-:id')
+    async listarID(@Param('id') id: string): Promise<PESSOA>{
+        return this.pessoaService.localizarID(id);
     }
 
-    @Post()
-    async criaPessoa(@Body() dadosPessoa: criaPessoaDTO){        
-       
-        var novoPessoa = new PessoaEntity(uuid(), dadosPessoa.nome, dadosPessoa.nascimento, 
-                                            dadosPessoa.pais
-        )
-        
-            this.Pessoas.AdicionarPessoa(novoPessoa);
-            var retorno = new RetornoPessoaDTO("criado",novoPessoa);
-        
-                    
-        
-        return retorno
-    }
+    @Delete('remove-:id')
+    async removePessoa(@Param('id') id: string): Promise<RetornoObjDTO>{
+        return this.pessoaService.remover(id);
+    }    
 
- 
-    @Post('/login')
-    async fazerLogin(@Body() dadosLogin: loginPessoaDTO){
-        
-        var retornoLogin = this.Pessoas.Login(dadosLogin.nome,dadosLogin.nascimento)
-        var retorno = new RetornoPessoaDTO(retornoLogin.status?'Login efetuado':'Dados invalidos',retornoLogin.pessoa);        
-        return retorno;       
-        
-    }
-
-    @Put('/:id')
-    async alteraPessoa(@Body() dadosNovos: alteraPessoaDTO,@Param('id') id: string){
-       
-        var retornoAlteracao = this.Pessoas.alteraPessoa(id,dadosNovos)
-        
-        var retorno = new RetornoPessoaDTO('Alteração Efetuada',retornoAlteracao);        
-        return retorno;       
-        
-    }
-
-    @Delete('/:id')
-    async removePessoa(@Param('id') id: string){
-        
-        var retornoExclusao = await this.Pessoas.removePessoa(id)
-     
-        var retorno = new RetornoPessoaDTO('Exclusão Efetuada',retornoExclusao);        
-        return retorno;       
-        
-    }
-
-    @Get('/:nascimento')
-    async retornaPessoas(@Param('nascimento') nascimento:number){
-      
-        var pessoasListados = this.Pessoas.pesquisaNascimento(nascimento = (1990))
-        
-        
-        const ListaRetorno = new ListaPessoaDTO(pessoasListados.id,
-                                                pessoasListados.nome,
-                                                pessoasListados.nascimento,
-                                            pessoasListados.pais)
-
-        return {
-
-                Pessoas: ListaRetorno
-            };
-    }
-
-
-
-    @Get()
-    async retornaPessoa(){
-        
-        var pessoasListados = this.Pessoas.Pessoas;
-        const ListaRetorno = pessoasListados.map(
-            pessoa => new ListaPessoaDTO(
-                pessoa.id,
-                pessoa.nome,
-                pessoa.nascimento,
-                pessoa.pais
-            )
-        );
-
-
-
-        return {
-                Pessoas: ListaRetorno
-            };
-    }
 }

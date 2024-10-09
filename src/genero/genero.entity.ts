@@ -14,5 +14,5 @@ export class GENERO {
     DESCRICAO:string;
 
     @OneToMany(() => FILME, filme => filme.genero)
-    filmes: FILME[]
-}
+    filmes: FILME[];
+} 

@@ -2,7 +2,7 @@ import { GENERO } from "src/genero/genero.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 
 @Entity()
-export class FILME{
+export class SERIE{
     @PrimaryColumn()
     ID: string;
 
@@ -10,13 +10,11 @@ export class FILME{
     NOME: string;
 
     @Column("int")
-    DURACAO: number;
+    EPISODIO: string;
 
     @Column({length: 255})
-    SINOPSE: string;
+    TEMPORADA: string;
 
-    @Column({length: 255})
-    ANO: string;
 
     @ManyToOne(() => GENERO, genero => genero.filmes)
     @JoinColumn({name: "IDGENERO", referencedColumnName:"ID"})

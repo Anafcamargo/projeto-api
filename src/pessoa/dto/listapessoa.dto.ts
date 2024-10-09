@@ -1,10 +1,8 @@
-/* eslint-disable prettier/prettier */
-export class ListaPessoaDTO{
-
+export class listaPessoaDTO{
     constructor(
-            readonly id: string, 
-            readonly nome:string,
-            readonly nascimento: number,
-            readonly pais: string
+        readonly ID:string,
+        readonly NOME: string,
+        readonly NASCIMENTO: string,
+        readonly PAIS: string
     ){}
 }
