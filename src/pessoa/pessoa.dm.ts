@@ -3,14 +3,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { Injectable } from "@nestjs/common";
-import { PessoaEntity } from "./pessoa.entity";
+import { PESSOA } from "./pessoa.entity";
 import { alteraPessoaDTO } from "./dto/alterapessoa.dto";
 
 @Injectable()
 export class PessoasArmazenados{
-    #pessoas: PessoaEntity[] = [];  
+    #pessoas: PESSOA[] = [];  
 
-    AdicionarPessoa(pessoa: PessoaEntity){
+    AdicionarPessoa(pessoa: PESSOA){
         this.#pessoas.push(pessoa);
     }
 
@@ -20,17 +20,17 @@ export class PessoasArmazenados{
         const pessoa = this.pesquisaId(id);
 
         this.#pessoas = this.#pessoas.filter(
-            pessoaSalvo => pessoaSalvo.id !== id
+            pessoaSalvo => pessoaSalvo.ID !== id
         )
 
         return pessoa
     }
 
-    pesquisaNascimento(nascimento:number){
+    pesquisaNascimento(nascimento:Date){
 
       
         const possivelPessoa = this.#pessoas.find(
-            pessoa => pessoa.nascimento == nascimento
+            pessoa => pessoa.NASCIMENTO == nascimento
         );
 
       
@@ -40,7 +40,7 @@ export class PessoasArmazenados{
 
     pesquisaId (id:string){
         const possivelPessoa = this.#pessoas.find(
-           pessoaSalvo => pessoaSalvo.id === id
+           pessoaSalvo => pessoaSalvo.ID === id
         );
 
         if(!possivelPessoa){
@@ -70,15 +70,15 @@ export class PessoasArmazenados{
         
     }
 
-    Login(pais:string, nascimento:number){
+    Login(pais:string, nascimento:Date){
         
         const possivelPessoa = this.pesquisaNascimento(nascimento)
        
         if (possivelPessoa){
             return {
                
-                usuario: possivelPessoa.nascimento == nascimento?possivelPessoa:null,
-                status: possivelPessoa.nascimento== nascimento
+                usuario: possivelPessoa.NASCIMENTO == nascimento?possivelPessoa:null,
+                status: possivelPessoa.NASCIMENTO== nascimento
             };
         }else{
             return {

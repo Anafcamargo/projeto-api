@@ -3,7 +3,7 @@ import { RetornoCadastroDTO, RetornoObjDTO } from "src/dto/retorno.dto";
 import { PessoaService } from "./pessoa.service";
 import { PESSOA } from "./pessoa.entity";
 import { CriaPessoaDTO } from "./dto/criaPessoa.dto";
-import { AlteraPessoaDTO } from "./dto/alterapessoa.dto";
+import { alteraPessoaDTO } from "./dto/alterapessoa.dto";
 
 @Controller('/pessoa')
 export class PessoaController{
@@ -22,7 +22,7 @@ export class PessoaController{
     }
 
     @Put(':id')
-    async alterarPessoa(@Body() dados: AlteraPessoaDTO,@Param('id') id: string): Promise<RetornoCadastroDTO>{        
+    async alterarPessoa(@Body() dados: alteraPessoaDTO,@Param('id') id: string): Promise<RetornoCadastroDTO>{        
         return this.pessoaService.alterar(id,dados)        
     }
     

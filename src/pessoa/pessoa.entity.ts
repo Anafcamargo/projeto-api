@@ -14,6 +14,7 @@ export class PESSOA {
 
     @Column({length: 255})
     PAIS: string;
+    filme: any;
 
     
 }

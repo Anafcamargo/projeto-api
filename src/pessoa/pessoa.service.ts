@@ -4,7 +4,7 @@ import {v4 as uuid} from 'uuid';
 import { PESSOA } from './pessoa.entity';
 import { RetornoCadastroDTO, RetornoObjDTO } from 'src/dto/retorno.dto';
 import { CriaPessoaDTO } from './dto/criaPessoa.dto';
-import { AlteraPessoaDTO } from './dto/alterapessoa.dto';
+import { alteraPessoaDTO } from './dto/alterapessoa.dto';
 
 
 
@@ -79,7 +79,7 @@ export class PessoaService {
     });  
   }
 
-  async alterar(id: string, dados: AlteraPessoaDTO): Promise<RetornoCadastroDTO> {
+  async alterar(id: string, dados: alteraPessoaDTO): Promise<RetornoCadastroDTO> {
     const pessoa = await this.localizarID(id);
 
     Object.entries(dados).forEach(

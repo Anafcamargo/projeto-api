@@ -6,7 +6,7 @@ import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 export class GENERO {
     @PrimaryColumn ()
     ID: string;
-
+ 
     @Column ({length:255})
     NOME: string;
 

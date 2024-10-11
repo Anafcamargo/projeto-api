@@ -1,5 +1,6 @@
 import { GENERO } from "src/genero/genero.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { SERIE } from "src/serie/serie.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class FILME{
@@ -19,7 +20,14 @@ export class FILME{
     ANO: string;
 
     @ManyToOne(() => GENERO, genero => genero.filmes)
-    @JoinColumn({name: "IDGENERO", referencedColumnName:"ID"})
+    @JoinColumn({name: "NOME", referencedColumnName:"NOME"})
         genero:GENERO;
+    atores: any;
+
+    @OneToOne(() => SERIE, series => series.filme)
+    @JoinColumn({name: "NOME", referencedColumnName:"NOME"})
+        series:SERIE;
+    filme: any;
+    
 }
 
