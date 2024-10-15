@@ -10,8 +10,8 @@ export class FILME{
     @Column({length: 255}) 
     NOME: string;
 
-    @Column("int")
-    DURACAO: number;
+    @Column("number")
+    DURACAO: Date;
 
     @Column({length: 255})
     SINOPSE: string;

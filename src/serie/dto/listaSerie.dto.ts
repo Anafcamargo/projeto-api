@@ -3,7 +3,7 @@ import { SERIE } from "../serie.entity";
 export class listaSerieDTO{
     constructor(
         readonly ID: string,
-        readonly NOMESERIE: string,
+        readonly NOME: string,
         readonly TEMPORADA: string,
         readonly EPISODIO: String,
 

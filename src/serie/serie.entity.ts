@@ -8,7 +8,7 @@ export class SERIE{
     ID: string;
 
     @Column({length: 255}) 
-    NOMESERIE: string;
+    NOME: string;
 
     @Column("int")
     EPISODIO: string;

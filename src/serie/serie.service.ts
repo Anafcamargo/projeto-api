@@ -23,7 +23,7 @@ export class SerieService {
     async inserir (dados: CriaSerieDTO) : Promise<RetornoCadastroDTO>{
         let serie = new SERIE();
         serie.ID = uuid();
-        serie.NOMESERIE = dados.NOMESERIE;
+        serie.NOME = dados.NOME;
         serie.EPISODIO = dados.EPISODIO;
         serie.TEMPORADA = dados.TEMPORADA;
 
@@ -31,7 +31,7 @@ export class SerieService {
         .then((result) => {
             return <RetornoCadastroDTO>{
                 id: serie.ID,
-                message: "Serie cadastrada!"
+                message: "Serie cadastrado!"
             };
         })
         .catch((error) => {
@@ -50,10 +50,10 @@ export class SerieService {
         });
     }
 
-    localizarNome(NOMESERIE: string) : Promise<SERIE> {
+    localizarNome(NOME: string) : Promise<SERIE> {
         return this.serieRepository.findOne({
             where: {
-                NOMESERIE,
+                NOME,
             },
         });
     }

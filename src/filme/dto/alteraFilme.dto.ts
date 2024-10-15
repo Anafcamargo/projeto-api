@@ -1,5 +1,5 @@
 import { Optional } from "@nestjs/common";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 
 export class AlteraFilmeDTO {
@@ -8,10 +8,10 @@ export class AlteraFilmeDTO {
     @IsNotEmpty ({message: "Nome não pode ser vazio"})
     NOME: string;
 
-    @IsString()
+    @IsDate()
     @Optional()
     @IsNotEmpty({message: " Duração não pode ser vazio"})
-    DURACAO: Number;
+    DURACAO: Date;
 
     @IsString()
     @Optional()

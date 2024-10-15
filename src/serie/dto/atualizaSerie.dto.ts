@@ -6,7 +6,7 @@ export class AlteraSerieDTO {
     @IsString()
     @Optional()
     @IsNotEmpty ({message: "Nome não pode ser vazio"})
-    NOMESERIE: string;
+    NOME: string;
 
     @IsString()
     @Optional()

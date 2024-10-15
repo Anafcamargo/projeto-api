@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsDate, isDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 
 export class CriaFilmeDTO {
@@ -6,9 +6,9 @@ export class CriaFilmeDTO {
     @IsNotEmpty ({message: "Nome não pode ser vazio"})
     NOME: string;
 
-    @IsString()
+    @IsDate()
     @IsNotEmpty({message: " Duração não pode ser vazio"})
-    DURACAO: number;
+    DURACAO: Date;
 
     @IsString()
     @IsNotEmpty ({message: "Sinopse não pode ser vazio"})
