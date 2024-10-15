@@ -2,7 +2,7 @@ export class listaFilmeDTO{
     constructor(
         readonly ID: string,
         readonly NOME: string,
-        readonly DURACAO: Date,
+        readonly DURACAO: number,
         readonly SINOPSE: string,
         readonly ANO: string
        

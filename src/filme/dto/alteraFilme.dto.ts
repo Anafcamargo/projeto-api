@@ -8,10 +8,10 @@ export class AlteraFilmeDTO {
     @IsNotEmpty ({message: "Nome não pode ser vazio"})
     NOME: string;
 
-    @IsDate()
+    @IsNumber()
     @Optional()
     @IsNotEmpty({message: " Duração não pode ser vazio"})
-    DURACAO: Date;
+    DURACAO: number;
 
     @IsString()
     @Optional()

@@ -6,9 +6,9 @@ export class CriaFilmeDTO {
     @IsNotEmpty ({message: "Nome não pode ser vazio"})
     NOME: string;
 
-    @IsDate()
+    @IsNumber()
     @IsNotEmpty({message: " Duração não pode ser vazio"})
-    DURACAO: Date;
+    DURACAO: number;
 
     @IsString()
     @IsNotEmpty ({message: "Sinopse não pode ser vazio"})
