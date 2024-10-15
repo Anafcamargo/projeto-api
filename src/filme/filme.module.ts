@@ -26,5 +26,6 @@ import { FILME_PESSOAService } from 'src/filme_pessoa/filme_pessoa.service';
     ...generoProviders,
     GeneroService,
     ],
+    exports: [FilmeService],
 })
 export class FilmeModule {}

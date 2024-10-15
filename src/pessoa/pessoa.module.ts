@@ -11,5 +11,6 @@ import { PessoaService } from './pessoa.service';
     ...pessoaProviders,
     PessoaService,
   ],
+  exports: [PessoaService],
 })
 export class PessoaModule {}

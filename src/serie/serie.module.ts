@@ -13,6 +13,7 @@ import { SerieController } from "./serie.controller";
         ...serieProviders,
         SerieService,
     ],
+    exports: [SerieService],
 })
 
 export class SerieModule {}

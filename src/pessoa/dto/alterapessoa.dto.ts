@@ -7,10 +7,7 @@ export class alteraPessoaDTO {
     @IsNotEmpty({message: "Nome não pode ser vazio"})
     NOME: string;
 
-    @IsString()
-    @Optional()
-    @IsNotEmpty({message: "Descrição não pode ser vazio"})
-    DESCRICAO: string;
+    
 
     @IsDate()
     @Optional()

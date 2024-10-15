@@ -4,7 +4,7 @@ import { IsNotEmpty, IsString } from "class-validator";
 export class CriaSerieDTO {
     @IsString()
     @IsNotEmpty ({message: "Nome não pode ser vazio"})
-    NOME: string;
+    NOMESERIE: string;
 
     @IsString()
     @IsNotEmpty({message: " Episódio não pode ser vazio"})
@@ -13,4 +13,8 @@ export class CriaSerieDTO {
     @IsString()
     @IsNotEmpty({message: " Temporada não pode ser vazio"})
     TEMPORADA: string;
+
+    @IsString()
+    @IsNotEmpty({message: " IDFILME não pode ser vazio"})
+    IDFILME: string;
 }

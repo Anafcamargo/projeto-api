@@ -6,3 +6,5 @@ export class listaGeneroDTO{
 
     ){}
 }
+const genero = new listaGeneroDTO("1", "Nome do genero", "Descrição do genero");
+console.log(genero);

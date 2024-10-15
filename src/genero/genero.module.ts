@@ -12,6 +12,7 @@ import { GeneroService } from "./genero.service";
         ...generoProviders,
         GeneroService,
     ],
+    exports: [GeneroService],
 })
 
 export class GeneroModule {}

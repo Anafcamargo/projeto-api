@@ -57,6 +57,7 @@ export class FilmeService{
         filme.ANO = dados.ANO;
         filme.DURACAO = dados.DURACAO;
         filme.SINOPSE = dados.SINOPSE;
+        filme.IDGenero = dados.IDGENERO;
         filme.genero = await this.generoService.localizarID(dados.GENERO);
 
         return this.filmeRepository.save(filme)
@@ -99,6 +100,15 @@ export class FilmeService{
                 return: filme,
                 message: " Houve um erro ao excluir." + error.message
             };
+        });
+    }
+
+    localizarNOME(NOME: string) : Promise<FILME> {
+        return this.filmeRepository.findOne({
+            where: {
+                NOME,
+            },
+            
         });
     }
 

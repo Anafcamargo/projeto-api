@@ -8,7 +8,7 @@ export class SERIE{
     ID: string;
 
     @Column({length: 255}) 
-    NOME: string;
+    NOMESERIE: string;
 
     @Column("int")
     EPISODIO: string;
@@ -16,10 +16,18 @@ export class SERIE{
     @Column({length: 255})
     TEMPORADA: string;
 
+    @Column({length: 155})
+    IDFILME: string;
 
-    @OneToMany(() => FILME, filme => filme.series)
-    filmes: FILME[];
-    filme: any;
+    @OneToOne(() => FILME, filme => filme.series)
+    @JoinColumn({name: "NOME", referencedColumnName:"NOME"})
+    filme: FILME; 
+    filmes: any;
+    static id: string;
+
+    // @OneToMany(() => FILME, filme => filme.series)
+    // filmes: FILME[];
+    // filme: any;
 
 }
 

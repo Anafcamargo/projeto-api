@@ -19,9 +19,12 @@ export class FILME{
     @Column({length: 255})
     ANO: string;
 
+    @Column({length: 155})
+    IDGenero: string;
+
     @ManyToOne(() => GENERO, genero => genero.filmes)
     @JoinColumn({name: "NOME", referencedColumnName:"NOME"})
-        genero:GENERO;
+    genero:GENERO;
     atores: any;
 
     @OneToOne(() => SERIE, series => series.filme)

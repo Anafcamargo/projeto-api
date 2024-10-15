@@ -4,7 +4,7 @@ import { FILME } from "./filme.entity";
 
 export const filmeProviders = [{
     provide: "FILME_REPOSITORY",
-    useFactory: (DataSource: DataSource) => DataSource.getRepository(FILME),
-    inject:["DATA_SOURCE"],
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(FILME),
+    inject: ["DATA_SOURCE"],
 },
 ];

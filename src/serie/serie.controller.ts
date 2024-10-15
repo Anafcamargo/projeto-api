@@ -7,7 +7,7 @@ import { CriaSerieDTO } from './dto/criaSerie.dto';
 import { AlteraSerieDTO } from './dto/atualizaSerie.dto';
 
 
-@Controller("/genero")
+@Controller("/serie")
 export class SerieController{
     constructor(private readonly SerieService: SerieService){ 
 

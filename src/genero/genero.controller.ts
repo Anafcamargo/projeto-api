@@ -8,9 +8,7 @@ import { AlteraGeneroDTO } from './dto/atualizaGenero.dto';
 
 @Controller("/genero")
 export class GeneroController{
-    constructor(private readonly GeneroService: GeneroService){ 
-
-    }
+    constructor(private readonly GeneroService: GeneroService){}
 
     @Get("listar")
     async listar (): Promise<GENERO[]>{

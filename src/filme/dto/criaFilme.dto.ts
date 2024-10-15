@@ -17,5 +17,11 @@ export class CriaFilmeDTO {
     @IsString()
     @IsNotEmpty ({message: "Ano não pode ser vazio"})
     ANO: string;
+
+    @IsString()
+    @IsNotEmpty ({message: "Ano não pode ser vazio"})
+    IDGENERO: string;
+
+
     GENERO: string;
 } 

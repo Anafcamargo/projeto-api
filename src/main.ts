@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
@@ -12,9 +12,12 @@ async function bootstrap() {
       transform: true,
       whitelist: true,
       forbidNonWhitelisted: true,
-    })
-  )
-  useContainer(app.select(AppModule),{fallbackOnErrors:true})
-  await app.listen(3000);
+    }),
+  );
+  useContainer(app.select(AppModule),{fallbackOnErrors: true});
+ 
+  const port = process.env.PORT || 3000; // Use environment variable for port
+  await app.listen(port);
+  Logger.log(`Application is running on: http://localhost:${port}`);
 }
 bootstrap();
