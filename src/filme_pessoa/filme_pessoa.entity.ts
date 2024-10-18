@@ -19,7 +19,7 @@ export class FILME_PESSOA{
 
     @ManyToOne(
         () => PESSOA,
-        ator => ator.filme,
+        ator => ator.filmes,
         {onDelete: 'NO ACTION', onUpdate: 'NO ACTION'} 
       )
     @JoinColumn([{ name: 'IDPESSOA', referencedColumnName: 'ID' }])

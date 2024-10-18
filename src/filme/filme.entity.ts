@@ -31,7 +31,7 @@ export class FILME{
 
     @ManyToMany(
         () => PESSOA,
-        ator => ator.filme,
+        ator => ator.filmes,
         {onDelete: 'NO ACTION', onUpdate: 'NO ACTION',},
       )
     atores?: PESSOA[];
