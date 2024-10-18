@@ -1,13 +1,10 @@
-import { PESSOA } from 'src/pessoa/pessoa.entity';
-
-import { Inject } from '@nestjs/common';
 import { DataSource } from 'typeorm';
+import { PESSOA } from './pessoa.entity';
 
 export const pessoaProviders = [
   {
     provide: 'PESSOA_REPOSITORY',
-    useFactory: (dataSource: DataSource) => dataSource.getRepository(PESSOA),
+    useFactory: (dataSource: DataSource) => dataSource.getRepository<PESSOA>(PESSOA),
     inject: ['DATA_SOURCE'],
   },
 ];
- 

@@ -28,7 +28,7 @@ import { FilesModule } from './files/files.module';
     GeneroModule,
     UsuarioModule,
     FilmeModule,
-    FilesModule
+    FilesModule,
     
   ],
   controllers: [],
