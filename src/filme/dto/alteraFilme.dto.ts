@@ -1,5 +1,5 @@
 import { Optional } from "@nestjs/common";
-import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 
 export class AlteraFilmeDTO {
@@ -22,4 +22,8 @@ export class AlteraFilmeDTO {
     @Optional()
     @IsNotEmpty ({message: "Ano não pode ser vazio"})
     ANO: string;
+
+    @IsString()
+    @IsOptional()
+    GENERO: string;
 }

@@ -4,7 +4,7 @@ export class listaFilmeDTO{
         readonly NOME: string,
         readonly DURACAO: number,
         readonly SINOPSE: string,
-        readonly ANO: string
+        readonly ANO: string,
        
 
     ){}

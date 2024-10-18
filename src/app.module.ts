@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Any } from 'typeorm';
 import { join } from 'path';
 import { UsuarioModule } from './usuario/usuario.module';
+import { FilmeModule } from './filme/filme.module';
+import { FilesModule } from './files/files.module';
 
 
 @Module({
@@ -24,7 +26,10 @@ import { UsuarioModule } from './usuario/usuario.module';
     }),
     PessoaModule,
     GeneroModule,
-    UsuarioModule
+    UsuarioModule,
+    FilmeModule,
+    FilesModule
+    
   ],
   controllers: [],
   providers: [

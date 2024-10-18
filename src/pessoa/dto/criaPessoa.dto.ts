@@ -6,7 +6,7 @@ export class CriaPessoaDTO{
     @IsNotEmpty({message: "Nome não pode ser vazio"})
     NOME: string;
 
-    @IsNumber()
+    @IsDate()
     @IsNotEmpty({message: "Nascimento não pode ser vazio"})
     NASCIMENTO: Date;
 
