@@ -26,6 +26,7 @@ export class SerieService {
         serie.NOME = dados.NOME;
         serie.EPISODIO = dados.EPISODIO;
         serie.TEMPORADA = dados.TEMPORADA;
+        serie.IDFILME = dados.IDFILME;
 
         return this.serieRepository.save(serie)
         .then((result) => {

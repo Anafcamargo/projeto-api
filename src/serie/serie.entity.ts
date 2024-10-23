@@ -20,10 +20,9 @@ export class SERIE{
     IDFILME: string;
 
     @OneToOne(() => FILME, filme => filme.series)
-    @JoinColumn({name: "NOME", referencedColumnName:"NOME"})
-    filme: FILME; 
-    filmes: any;
-    static id: string;
+    @JoinColumn({ name: "IDFILME", referencedColumnName: "ID" }) // Mudei para usar o campo ID para a relação
+    filme: FILME;
+    
 
     // @OneToMany(() => FILME, filme => filme.series)
     // filmes: FILME[];

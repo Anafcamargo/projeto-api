@@ -1,5 +1,5 @@
 import { Optional } from "@nestjs/common";
-import { IsDate, IsNotEmpty, IsString } from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class alteraPessoaDTO {
     @IsString()
@@ -9,10 +9,10 @@ export class alteraPessoaDTO {
 
     
 
-    @IsDate()
+    @IsNumber()
     @Optional()
     @IsNotEmpty({message: "Nascimento não pode ser vazio"})
-    NASCIMENTO: Date;
+    NASCIMENTO: number;
 
     @IsString()
     @Optional()
