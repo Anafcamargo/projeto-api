@@ -14,7 +14,7 @@ export class FilmeController{
 
     }
 
-    @Get()
+    @Get('listar')
     async Retorno (): Promise<listaFilmeDTO[]>{
         return this.FilmeService.listar();
     }
